@@ -33,15 +33,19 @@ export class DataService {
                 skip,
                 take: perPage
               });
+              console.log(dataFound, "totaldata")
               const totalPages = Math.ceil(totalData / perPage);
               const numbersArray = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+              const totalProducts = await this.dataRepository.find()
 
               return {
                 totalData: totalData,
                 totalPages: totalPages,
                 currentPage: page,
                 numbersArray: numbersArray,
-                dataFound: dataFound
+                dataFound: dataFound,
+                totalProducts: totalProducts
               }
         } catch(err: any){
             console.log(err)
